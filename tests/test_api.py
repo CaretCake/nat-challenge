@@ -85,9 +85,12 @@ def test_optimal_coins_zero():
 def test_optimal_coins_invalid():        
     response = app.test_client().get(
         '/api/v1/coins',
-        query_string={'dollaramount': 'blah'}
+        query_string={'dollaramount': '3blah3.45'}
     )
-
-    data = json.loads(response.get_data(as_text=True))
+    response_two = app.test_client().get(
+        '/api/v1/coins',
+        query_string={'dollaramount': '3.444444'}
+    )
     
     assert response.status_code == 400
+    assert response_two.status_code == 400
