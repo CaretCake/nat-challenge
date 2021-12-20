@@ -15,12 +15,10 @@ class DollarForm extends Component {
     }
 
     handleSubmit(event) {
-        alert('A dollar amount was submitted: ' + this.state.value);
         event.preventDefault();
 
         axios.get('http://127.0.0.1:5000/api/v1/coins?dollaramount=' + this.state.value)
             .then(response => this.props.handleDollarChange(response.data));
-        
     }
 
     render() {
