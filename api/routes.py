@@ -10,12 +10,12 @@ app.config["DEBUG"] = True
 @app.route('/api/v1/coins', methods=['GET'])
 def coins():
     if 'dollaramount' in request.args:
-        dollar_amount = '0' + str(request.args['dollaramount'].strip())
+        dollar_amount = str(request.args['dollaramount'].strip())
     else:
-        return "Error: no dollar amount provided. Please specify a dollar amount."
+        return jsonify({'error': 'Invalid dollar amount:'}), 400
 
     if re.search(r"^\d*\.?\d{0,2}$", dollar_amount) is None:
-        return jsonify({'error': 'Invalid dollar amount.'}), 400
+        return jsonify({'error': 'Invalid dollar amount: {amount}'.format(amount = dollar_amount)}), 400
     
     optimal_coins = {
         'silver-dollar': 0,
@@ -26,10 +26,15 @@ def coins():
         'penny': 0
     }
 
+    # Split whole dollars from amount and handle silver-dollars
+    # Append '0' if input starts with '.'
+    if (dollar_amount.startswith('.')):
+        dollar_amount = '0' + dollar_amount
     split_amount = dollar_amount.split('.')
     optimal_coins['silver-dollar'] = int(split_amount[0])
     dollar_amount = Decimal('.' + split_amount[1])
 
+    # Handle remaining change
     getcontext().prec = 2
     if use_coin(HALF_DOLLAR, dollar_amount):
         num_of_coins = get_num_of_coin(HALF_DOLLAR, dollar_amount)
@@ -53,7 +58,7 @@ def coins():
         dollar_amount = 0
 
 
-    return jsonify(optimal_coins)
+    return jsonify(optimal_coins), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
