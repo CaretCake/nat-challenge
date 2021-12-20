@@ -12,7 +12,7 @@ def coins():
     else:
         return "Error: no dollar amount provided. Please specify a dollar amount."
 
-    if re.search("^\d*\.?\d{0,2}$", dollar_amount) is None:
+    if re.search(r"^\d*\.?\d{0,2}$", dollar_amount) is None:
         return jsonify({'error': 'Invalid dollar amount.'}), 400
     
     optimal_coins = {
