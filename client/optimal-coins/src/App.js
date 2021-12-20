@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import { Header } from './Header.js'
+import { DollarForm } from './DollarForm.js'
+import { CoinCount } from './CoinCount.js'
 import './App.css';
 
 function App() {
@@ -7,6 +9,8 @@ function App() {
     <div className="App">
       <Header/>
       <div className="Container">
+        <DollarForm/>
+        <CoinCount/>
       </div>
     </div>
   );
