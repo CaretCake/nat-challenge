@@ -18,10 +18,26 @@ def test_optimal_coins_one_each_coin():
     assert data.get('nickel') == 1
     assert data.get('penny') == 1
 
+def test_optimal_coins_whole_dollar():        
+    response = app.test_client().get(
+        '/api/v1/coins',
+        query_string={'dollaramount': '5'}
+    )
+
+    data = json.loads(response.get_data(as_text=True))
+    
+    assert response.status_code == 200
+    assert data.get('silver-dollar') == 5
+    assert data.get('half-dollar') == 0
+    assert data.get('quarter') == 0
+    assert data.get('dime') == 0
+    assert data.get('nickel') == 0
+    assert data.get('penny') == 0
+
 def test_optimal_coins_one():        
     response = app.test_client().get(
         '/api/v1/coins',
-        query_string={'dollaramount': '0.99'}
+        query_string={'dollaramount': '.99'}
     )
 
     data = json.loads(response.get_data(as_text=True))
