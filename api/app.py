@@ -1,3 +1,4 @@
+import re
 from flask import Flask, request, jsonify
 from decimal import Decimal, getcontext
 
@@ -7,12 +8,12 @@ app.config["DEBUG"] = True
 @app.route('/api/v1/coins', methods=['GET'])
 def coins():
     if 'dollaramount' in request.args:
-        dollar_amount = '0' + str(request.args['dollaramount'])
+        dollar_amount = '0' + str(request.args['dollaramount'].strip())
     else:
         return "Error: no dollar amount provided. Please specify a dollar amount."
 
-    #if dollar_amount < 0:
-     #   return "Error: dollar amount cannot be negative."
+    if re.search("^\d*\.?\d{0,2}$", dollar_amount) is None:
+        return jsonify({'error': 'Invalid dollar amount.'}), 400
     
     optimal_coins = {
         'silver-dollar': 0,
