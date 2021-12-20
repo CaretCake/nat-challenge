@@ -1,5 +1,5 @@
 import re
-from api.utils import use_coin
+from api.utils import use_coin, get_num_of_coin
 from flask import Flask, request, jsonify
 from decimal import Decimal, getcontext
 from api.constants import HALF_DOLLAR, QUARTER, DIME, NICKEL, PENNY
@@ -31,22 +31,26 @@ def coins():
     dollar_amount = Decimal('.' + split_amount[1])
 
     getcontext().prec = 2
-    while dollar_amount > 0:
-        if use_coin(HALF_DOLLAR, dollar_amount):
-            dollar_amount = dollar_amount - HALF_DOLLAR
-            optimal_coins['half-dollar'] = optimal_coins.get('half-dollar') + 1
-        elif use_coin(QUARTER, dollar_amount):
-            dollar_amount = dollar_amount - QUARTER
-            optimal_coins['quarter'] = optimal_coins.get('quarter') + 1
-        elif use_coin(DIME, dollar_amount):
-            dollar_amount = dollar_amount - DIME
-            optimal_coins['dime'] = optimal_coins.get('dime') + 1
-        elif use_coin(NICKEL, dollar_amount):
-            dollar_amount = dollar_amount - NICKEL
-            optimal_coins['nickel'] = optimal_coins.get('nickel') + 1
-        elif use_coin(PENNY, dollar_amount):
-            optimal_coins['penny'] = int(Decimal(dollar_amount) / Decimal(PENNY))
-            dollar_amount = 0
+    if use_coin(HALF_DOLLAR, dollar_amount):
+        num_of_coins = get_num_of_coin(HALF_DOLLAR, dollar_amount)
+        dollar_amount = dollar_amount - (HALF_DOLLAR * num_of_coins)
+        optimal_coins['half-dollar'] = int(optimal_coins.get('half-dollar') + num_of_coins)
+    if use_coin(QUARTER, dollar_amount):
+        num_of_coins = get_num_of_coin(QUARTER, dollar_amount)
+        dollar_amount = dollar_amount - (QUARTER * num_of_coins)
+        optimal_coins['quarter'] = int(optimal_coins.get('quarter') + num_of_coins)
+    if use_coin(DIME, dollar_amount):
+        num_of_coins = get_num_of_coin(DIME, dollar_amount)
+        dollar_amount = dollar_amount - (DIME * num_of_coins)
+        optimal_coins['dime'] = int(optimal_coins.get('dime') + num_of_coins)
+    if use_coin(NICKEL, dollar_amount):
+        num_of_coins = get_num_of_coin(NICKEL, dollar_amount)
+        dollar_amount = dollar_amount - (NICKEL * num_of_coins)
+        optimal_coins['nickel'] = int(optimal_coins.get('nickel') + num_of_coins)
+    if use_coin(PENNY, dollar_amount):
+        num_of_coins = get_num_of_coin(PENNY, dollar_amount)
+        optimal_coins['penny'] = int(num_of_coins)
+        dollar_amount = 0
 
 
     return jsonify(optimal_coins)
