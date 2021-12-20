@@ -1,5 +1,5 @@
-# test_test.py
-from api.app import app
+# test_api.py
+from api.routes import app
 from flask import json
 
 def test_optimal_coins_one_each_coin():        

@@ -1,6 +1,6 @@
 import pytest
 
-from api import app as flask_app
+from api.routes import app as flask_app
 
 
 @pytest.fixture
