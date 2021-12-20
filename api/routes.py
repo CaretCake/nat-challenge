@@ -3,11 +3,15 @@ from api.utils import use_coin, get_num_of_coin
 from flask import Flask, request, jsonify
 from decimal import Decimal, getcontext
 from api.constants import HALF_DOLLAR, QUARTER, DIME, NICKEL, PENNY
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/api/v1/coins', methods=['GET'])
+@cross_origin()
 def coins():
     if 'dollaramount' in request.args:
         dollar_amount = str(request.args['dollaramount'].strip())
