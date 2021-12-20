@@ -32,7 +32,7 @@ def coins():
 
     getcontext().prec = 2
     while dollar_amount > 0:
-        if use_coin(HALF_DOLLAR, dollar_amount) < 1:
+        if use_coin(HALF_DOLLAR, dollar_amount):
             dollar_amount = dollar_amount - HALF_DOLLAR
             optimal_coins['half-dollar'] = optimal_coins.get('half-dollar') + 1
         elif use_coin(QUARTER, dollar_amount):
