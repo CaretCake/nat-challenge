@@ -1,6 +1,5 @@
 import { Header } from './Header.js'
-import { DollarForm } from './DollarForm.js'
-import { CoinCount } from './CoinCount.js'
+import { OptimalCoins } from './OptimalCoins.js'
 import './App.css';
 
 function App() {
@@ -8,8 +7,7 @@ function App() {
     <div className="App">
       <Header/>
       <div className="Container">
-        <DollarForm/>
-        <CoinCount/>
+        <OptimalCoins/>
       </div>
     </div>
   );
