@@ -1,4 +1,5 @@
 import re
+from utils import use_coin
 from flask import Flask, request, jsonify
 from decimal import Decimal, getcontext
 
@@ -36,19 +37,19 @@ def coins():
 
     getcontext().prec = 2
     while dollar_amount > 0:
-        if half_dollar.compare(dollar_amount) < 1:
+        if use_coin(half_dollar, dollar_amount) < 1:
             dollar_amount = dollar_amount - half_dollar
             optimal_coins['half-dollar'] = optimal_coins.get('half-dollar') + 1
-        elif quarter.compare(dollar_amount) < 1:
+        elif use_coin(quarter, dollar_amount):
             dollar_amount = dollar_amount - quarter
             optimal_coins['quarter'] = optimal_coins.get('quarter') + 1
-        elif dime.compare(dollar_amount) < 1:
+        elif use_coin(dime, dollar_amount):
             dollar_amount = dollar_amount - dime
             optimal_coins['dime'] = optimal_coins.get('dime') + 1
-        elif nickel.compare(dollar_amount) < 1:
+        elif use_coin(nickel, dollar_amount):
             dollar_amount = dollar_amount - nickel
             optimal_coins['nickel'] = optimal_coins.get('nickel') + 1
-        elif penny.compare(dollar_amount) < 1:
+        elif use_coin(penny, dollar_amount):
             optimal_coins['penny'] = int(Decimal(dollar_amount) / Decimal(0.01))
             dollar_amount = 0
 
