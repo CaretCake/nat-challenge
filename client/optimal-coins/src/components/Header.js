@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ReactComponent as CoinLogo} from './logo.svg';
+import {ReactComponent as CoinLogo} from '../logo.svg';
 
 
 class Header extends Component {

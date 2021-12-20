@@ -1,5 +1,5 @@
-import { Header } from './Header.js'
-import { OptimalCoins } from './OptimalCoins.js'
+import { Header } from './components/Header.js'
+import { OptimalCoins } from './components/OptimalCoins.js'
 import './App.css';
 
 function App() {
