@@ -32,7 +32,10 @@ def coins():
         dollar_amount = '0' + dollar_amount
     split_amount = dollar_amount.split('.')
     optimal_coins['silver-dollar'] = int(split_amount[0])
-    dollar_amount = Decimal('.' + split_amount[1])
+    if (len(split_amount) > 1):
+        dollar_amount = Decimal('.' + split_amount[1])
+    else:
+        dollar_amount = 0
 
     # Handle remaining change
     getcontext().prec = 2
