@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { Header } from './Header.js'
 import { DollarForm } from './DollarForm.js'
 import { CoinCount } from './CoinCount.js'
