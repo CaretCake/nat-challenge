@@ -13,6 +13,22 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/api/v1/coins', methods=['GET'])
 @cross_origin()
 def coins():
+    """An endpoint which returns optimal number of coins for given dollar amount.
+    ---
+    get:
+      description: Get optimal coin count for given dollar amount.
+      responses:
+        200: dictionary of coin counts
+            Example: { 
+                'silver-dollar': 0, 
+                'half-dollar': 1, 
+                'quarter': 1, 
+                'dime': 2, 
+                'nickel': 0, 
+                'penny': 4 
+            }
+        400: error processing provided dollar amount, incorrect format
+    """
     if 'dollaramount' in request.args:
         dollar_amount = str(request.args['dollaramount'].strip())
     else:
@@ -42,6 +58,7 @@ def coins():
         dollar_amount = 0
 
     # Handle remaining change
+    # Set prec for Decimals to reflect standard ".xy" change amount
     getcontext().prec = 2
     if use_coin(HALF_DOLLAR, dollar_amount):
         num_of_coins = get_num_of_coin(HALF_DOLLAR, dollar_amount)
