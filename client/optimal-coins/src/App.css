@@ -18,6 +18,7 @@ html,body,#root{
   max-width: 1140px;
 }
 
+/* Header related CSS */
 .header {
   align-items: center;
   display: flex;
@@ -53,64 +54,7 @@ h1 > span {
     width: 15vmin;
 }
 
-
-/* Header related CSS */
-.coin-container {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 5px #ecf1ff;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px 0px;
-  width: 100%;
-}
-
-.coin {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 150px;
-  justify-content: center;
-  margin: 2px;
-  min-width: 150px;
-  width: 15%;
-}
-
-.coin-info {
-  align-items: center;
-  color: #446DF6;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Bebas Neue', cursive;
-  font-size: 1.5em;
-  padding: 0 10px;
-  position: relative;
-}
-
-.coin-info > svg {
-  height: 50px;
-  margin: 0 0 10px 0;
-  width: 50px;
-}
-
-.coin > span {
-  width: 50px;
-}
-
-.coin-counter {
-  color: white;
-  display: flex;
-  justify-content: center;
-  left: -1px;
-  letter-spacing: normal;
-  position: absolute;
-  text-shadow: 0 0 4px black;
-  top: 9px;
-  width: 100%;
-}
-
+/* Form related CSS */
 .dollar-form {
   align-items: center;
   color: #646464;
@@ -145,10 +89,6 @@ input[type=text] {
   width: 100%;
 }
 
-input[type=text]:active {
-  border: 2px solid grey;
-}
-
 input[type=submit] {
   background-color: #446DF6;
   border: none;
@@ -169,4 +109,61 @@ input[type=submit]:hover {
 
 input[type=submit]:active {
   background-color: #72f7ac;
+}
+
+/* Coin container related CSS */
+.coin-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #ecf1ff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px 0px;
+  width: 100%;
+}
+
+.coin {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: center;
+  margin: 2px;
+  min-width: 150px;
+  width: 15%;
+}
+
+.coin > span {
+  width: 50px;
+}
+
+.coin-info {
+  align-items: center;
+  color: #446DF6;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.5em;
+  padding: 0 10px;
+  position: relative;
+}
+
+.coin-info > svg {
+  height: 50px;
+  margin: 0 0 10px 0;
+  width: 50px;
+}
+
+.coin-counter {
+  color: white;
+  display: flex;
+  justify-content: center;
+  left: -1px;
+  letter-spacing: normal;
+  position: absolute;
+  text-shadow: 0 0 4px black;
+  top: 9px;
+  width: 100%;
 }
