@@ -31,8 +31,10 @@ class OptimalCoins extends Component {
 
         return(
             <div className='content'>
-                <DollarForm
-                    handleDollarChange={this.handleDollarChange} />
+                <div className='form'>
+                    <DollarForm
+                        handleDollarChange={this.handleDollarChange} />
+                </div>
                 <CoinCount
                     silver_dollar={silver_dollar}
                     half_dollar={half_dollar}

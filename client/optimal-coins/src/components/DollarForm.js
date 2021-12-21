@@ -23,12 +23,12 @@ class DollarForm extends Component {
 
     render() {
         return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className='dollar-form'>
             <label>
-            Dollar Amount:
+            <div className='form-label'>Enter your dollar amount.</div>
             <input type="text" value={this.state.value} onChange={this.handleChange} />
             </label>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Get Change" />
         </form>
         );
     }
