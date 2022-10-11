@@ -1,6 +1,6 @@
 # OptiChange
 
-A Flask python API backend with a React frontend that lets you calculate the optimal (fewest) number of coins for whatever amount of money you need. Submission for NAT challenge.
+A Flask python API backend with a React frontend that lets you calculate the optimal (fewest) number of coins for whatever amount of money you need.
 
 - [OptiChange](#optichange)
 - [Getting Started](#getting-started)
